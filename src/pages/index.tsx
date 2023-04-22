@@ -1,15 +1,19 @@
-import React, { Fragment } from 'react'
+import { Fragment } from 'react'
 import Head from 'next/head'
-import Header from '@/components/Header'
+import { Header, Feed } from '@/components'
+import { NextPage } from 'next'
 
-const Home = () => {
+const Home: NextPage = () => {
   return (
     <Fragment>
-      <Head>
-        <title>Instagram Clone</title>
-        <link rel='icon' href='/favicon.ico' />
-      </Head>
-      <Header />
+      <div className='bg-gray-50 h-screen overflow-y-scroll scrollbar-hide'>
+        <Head>
+          <title>Instagram Clone</title>
+          <link rel='icon' href='/favicon.ico' />
+        </Head>
+        <Header />
+        <Feed />
+      </div>
     </Fragment>
   )
 }

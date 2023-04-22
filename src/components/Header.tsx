@@ -2,12 +2,13 @@ import { Fragment } from 'react'
 import Image from 'next/image'
 import { PlusCircleIcon, UserGroupIcon, HeartIcon, PaperAirplaneIcon, MagnifyingGlassIcon, Bars3Icon } from '@heroicons/react/24/outline';
 import { HomeIcon } from '@heroicons/react/20/solid';
+import { NextComponentType } from 'next';
 
-const Header = () => {
+const Header: NextComponentType = () => {
     return (
         <Fragment>
             <div className='shadow-sm border-b bg-white sticky top-0 z-50'>
-                <div className='flex justify-between max-w-6xl mx-5 xl:mx-auto my-3'>
+                <div className='flex justify-between max-w-6xl mx-5 xl:mx-auto py-3'>
                     <div className='hidden lg:relative lg:flex h-10 w-24'>
                         <Image src='https://links.papareact.com/ocw' alt='full-logo-image' width={1000} height={1000} />
                     </div>
