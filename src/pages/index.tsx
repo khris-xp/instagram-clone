@@ -1,7 +1,7 @@
-import { Fragment } from 'react'
-import Head from 'next/head'
-import { Header, Feed } from '@/components'
-import { NextPage } from 'next'
+import { Fragment } from 'react';
+import Head from 'next/head';
+import { Header, Feed } from '@/components';
+import { NextPage } from 'next';
 
 const Home: NextPage = () => {
   return (

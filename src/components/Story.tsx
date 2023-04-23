@@ -1,13 +1,12 @@
-import { Fragment } from 'react'
-import Image from 'next/image'
-import { NextPage } from 'next'
+import { Fragment, FunctionComponent } from 'react';
+import Image from 'next/image';
 
 interface Props {
     img: string;
     username: string;
 }
 
-const Story: NextPage<Props> = ({ img, username }) => {
+const Story: FunctionComponent<Props> = ({ img, username }) => {
     return (
         <Fragment>
             <div>

@@ -4,17 +4,19 @@
 
 @layer components {
     .navBtn {
-        @apply hidden h-6 md:inline-flex cursor-pointer hover:scale-125
+      @apply hidden h-6 md:inline-flex cursor-pointer hover:scale-125
         transition-all duration-150 ease-out;
+    }
+    .btn {
+      @apply h-7 hover:scale-125 cursor-pointer
+      transition-all duration-150 ease-out;
     }
 }
 
-/* Hide the default scrollbar */
 ::-webkit-scrollbar {
     display: none;
   }
   
-  /* Add custom styles for the scrollbar track and thumb */
   .scrollbar-container {
     position: relative;
     overflow-x: scroll;
