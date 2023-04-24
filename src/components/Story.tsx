@@ -1,4 +1,4 @@
-import { Fragment, FunctionComponent } from 'react';
+import { Fragment } from 'react';
 import Image from 'next/image';
 
 interface Props {
@@ -6,7 +6,7 @@ interface Props {
     username: string;
 }
 
-const Story: FunctionComponent<Props> = ({ img, username }) => {
+const Story = ({ img, username }: Props) => {
     return (
         <Fragment>
             <div>

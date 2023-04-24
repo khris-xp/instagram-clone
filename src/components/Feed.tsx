@@ -1,6 +1,6 @@
 import { Fragment } from 'react';
 import { NextComponentType } from 'next';
-import { Stories, Posts, MiniProfile } from '@/components';
+import { Stories, Posts, MiniProfile, Suggestions } from '@/components';
 
 const Feed: NextComponentType = () => {
     return (
@@ -13,6 +13,7 @@ const Feed: NextComponentType = () => {
                 <section className='hidden xl:inline-grid md:col-span-1'>
                     <div>
                         <MiniProfile />
+                        <Suggestions />
                     </div>
                 </section>
             </main>

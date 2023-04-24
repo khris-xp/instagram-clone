@@ -1,7 +1,8 @@
 import React, { Fragment } from 'react'
 import Image from 'next/image'
+import { NextComponentType } from 'next'
 
-const MiniProfile = () => {
+const MiniProfile: NextComponentType = () => {
     return (
         <Fragment>
             <div className='flex items-center justify-between mt-4 ml-10'>

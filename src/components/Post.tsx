@@ -4,7 +4,7 @@ import { TPost } from '@/interfaces/post';
 import { BookmarkIcon, ChatBubbleOvalLeftEllipsisIcon, FaceSmileIcon, EllipsisHorizontalIcon, HeartIcon, PaperAirplaneIcon } from '@heroicons/react/24/outline';
 import { HeartIcon as HeartIconFilled } from '@heroicons/react/20/solid';
 
-const Post: FunctionComponent<TPost> = ({ username, userImage, postImage, caption }) => {
+const Post = ({ username, userImage, postImage, caption }: TPost) => {
     return (
         <Fragment>
             <div className='bg-white my-7 border rounded-sm mx-auto'>
