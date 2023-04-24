@@ -1,6 +1,6 @@
 import { Fragment } from 'react';
 import { NextComponentType } from 'next';
-import { Stories, Posts } from '@/components';
+import { Stories, Posts, MiniProfile } from '@/components';
 
 const Feed: NextComponentType = () => {
     return (
@@ -10,7 +10,11 @@ const Feed: NextComponentType = () => {
                     <Stories />
                     <Posts />
                 </section>
-                <section></section>
+                <section className='hidden xl:inline-grid md:col-span-1'>
+                    <div>
+                        <MiniProfile />
+                    </div>
+                </section>
             </main>
         </Fragment>
     )
