@@ -18,7 +18,8 @@ const authOptions: NextAuthOptions = {
             session.user.uuid = token.sub;
             return session;
         }
-    }
+    },
+    secret: process.env.SECRET!,
 };
 
 export default NextAuth(authOptions);
