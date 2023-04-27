@@ -10,6 +10,14 @@ const authOptions: NextAuthOptions = {
     ],
     pages: {
         signIn: "/auth/signin",
+    },
+    callbacks: {
+        async session({ session, token, user }: any): Promise<any> {
+            session.user.username = session.user.name.split(" ").join("").toLowerCase();
+
+            session.user.uuid = token.sub;
+            return session;
+        }
     }
 };
 

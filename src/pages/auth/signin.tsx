@@ -1,10 +1,12 @@
 import React, { Fragment } from 'react'
 import { ClientSafeProvider, getProviders, LiteralUnion, signIn as SignIntoProvider } from 'next-auth/react'
 import { BuiltInProviderType } from 'next-auth/providers'
+import { Header } from '@/components'
 
 const SignIn = ({ providers }: Record<LiteralUnion<BuiltInProviderType, string>, ClientSafeProvider>) => {
     return (
         <Fragment>
+            <Header />
             {providers && Object.values(providers).map((provider) => (
                 <div className="flex flex-col items-center justify-center" key={provider.id}>
                     <svg width={188} height={74} viewBox="0 0 188 74" fill="none" xmlns="http://www.w3.org/2000/svg">

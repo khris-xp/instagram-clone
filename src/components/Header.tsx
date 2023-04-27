@@ -4,18 +4,21 @@ import { PlusCircleIcon, UserGroupIcon, HeartIcon, PaperAirplaneIcon, Magnifying
 import { HomeIcon } from '@heroicons/react/20/solid';
 import { NextComponentType } from 'next';
 import { signIn, signOut, useSession } from 'next-auth/react';
+import { useRouter, NextRouter } from 'next/router';
+import { Session } from 'next-auth';
 
 const Header: NextComponentType = () => {
-    const { data: session } = useSession()
+    const { data: session } = useSession() as { data: Session | null };
+    const router: NextRouter = useRouter();
     return (
         <Fragment>
             <div className='shadow-sm border-b bg-white sticky top-0 z-50'>
                 <div className='flex justify-between max-w-6xl mx-5 xl:mx-auto py-3'>
-                    <div className='hidden lg:relative lg:flex h-10 w-24'>
+                    <div className='hidden lg:relative lg:flex h-10 w-24 cursor-pointer' onClick={() => router.push('/')}>
                         <Image src='https://links.papareact.com/ocw' alt='full-logo-image' width={1000} height={1000} />
                     </div>
 
-                    <div className='relative w-10 lg:hidden flex-shrink-0 cursor-pointer'>
+                    <div className='relative w-10 lg:hidden flex-shrink-0 cursor-pointer' onClick={() => router.push('/')}>
                         <Image src='https://links.papareact.com/jjm' alt='mini-logo-image' width={1000} height={1000} />
                     </div>
 
@@ -29,7 +32,7 @@ const Header: NextComponentType = () => {
                     </div>
 
                     <div className='flex items-center justify-end space-x-4'>
-                        <HomeIcon className='navBtn' />
+                        <HomeIcon className='navBtn' onClick={() => router.push('/')} />
                         <Bars3Icon className='h-6 md:hidden cursor-pointer' />
                         {session ? (
                             <Fragment>

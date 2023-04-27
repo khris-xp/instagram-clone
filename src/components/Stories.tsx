@@ -3,9 +3,12 @@ import { faker } from '@faker-js/faker';
 import { IStories } from '@/interfaces/user';
 import { Story } from '@/components';
 import { NextComponentType } from 'next';
+import { useSession } from 'next-auth/react';
+import { Session } from 'next-auth';
 
 const Stories: NextComponentType = () => {
     const [suggestions, setSuggestions] = useState<IStories[]>([]);
+    const { data: session } = useSession() as { data: Session | null };
     useEffect(() => {
         const suggestions = [...Array(20)].map((_, i) => ({
             userId: faker.datatype.uuid(),
@@ -18,10 +21,10 @@ const Stories: NextComponentType = () => {
         }));
         setSuggestions(suggestions);
     }, []);
-
     return (
         <Fragment>
             <div className='flex space-x-2 p-6 bg-white mt-8 border-gray-200 border rounded-sm scrollbar-container' style={{ overflowX: 'scroll' }}>
+                {session && (<Story img={session.user?.image!} username={session.user?.name!} />)}
                 {suggestions.map((profile: IStories) => (
                     <Story key={profile.userId} img={profile.avatar} username={profile.username} />
                 ))}
