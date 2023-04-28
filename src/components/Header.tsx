@@ -6,10 +6,14 @@ import { NextComponentType } from 'next';
 import { signIn, signOut, useSession } from 'next-auth/react';
 import { useRouter, NextRouter } from 'next/router';
 import { Session } from 'next-auth';
+import { useRecoilState } from 'recoil';
+import modalAtom from '../../atoms/modalAtom';
 
 const Header: NextComponentType = () => {
     const { data: session } = useSession() as { data: Session | null };
+    const [open, setOpen] = useRecoilState<boolean>(modalAtom);
     const router: NextRouter = useRouter();
+
     return (
         <Fragment>
             <div className='shadow-sm border-b bg-white sticky top-0 z-50'>
@@ -40,7 +44,7 @@ const Header: NextComponentType = () => {
                                     <PaperAirplaneIcon className='navBtn rotate-315' />
                                     <div className='absolute -top-1 -right-2 text-xs w-5 h-5 bg-red-500 rounded-full flex items-center justify-center animate-pulse text-white'>3</div>
                                 </div>
-                                <PlusCircleIcon className='navBtn' />
+                                <PlusCircleIcon onClick={() => setOpen(true)} className='navBtn' />
                                 <UserGroupIcon className='navBtn' />
                                 <HeartIcon className='navBtn' />
                                 <Image src={session?.user?.image!} alt='profi-picture'

@@ -6,8 +6,6 @@ import { Session } from 'next-auth';
 
 const MiniProfile: NextComponentType = () => {
     const { data: session } = useSession() as { data: Session | null };
-
-    console.log(session)
     return (
         <Fragment>
             <div className='flex items-center justify-between mt-4 ml-10'>

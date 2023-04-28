@@ -1,6 +1,6 @@
 import { Fragment } from 'react';
 import Head from 'next/head';
-import { Header, Feed } from '@/components';
+import { Header, Feed, Modal } from '@/components';
 import { NextPage } from 'next';
 
 const Home: NextPage = () => {
@@ -13,6 +13,7 @@ const Home: NextPage = () => {
         </Head>
         <Header />
         <Feed />
+        <Modal />
       </div>
     </Fragment>
   )
