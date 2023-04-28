@@ -1,20 +1,26 @@
 import { Fragment, useState, useRef } from 'react'
 import { NextComponentType } from 'next'
-import Image from 'next/image';
+import Image, { StaticImageData } from 'next/image';
 import { useRecoilState } from 'recoil';
 import modalAtom from '../../atoms/modalAtom';
 import { Dialog, Transition } from '@headlessui/react';
 import { CameraIcon } from '@heroicons/react/20/solid';
-import { StaticImageData } from 'next/image';
+import { database, storage } from '../../src/firebase';
+import { DocumentData, DocumentReference, addDoc, collection, doc, serverTimestamp, updateDoc } from 'firebase/firestore';
+import { useSession } from 'next-auth/react';
+import { Session } from 'next-auth';
+import { ref, getDownloadURL, uploadString } from '@firebase/storage';
 
 const Modal: NextComponentType = () => {
     const [open, setOpen] = useRecoilState<boolean>(modalAtom);
     const filePickerRef = useRef<HTMLInputElement>(null);
+    const captionRef = useRef<HTMLInputElement>(null);
     const [selectedFile, setSelectedFile] = useState<File | null>(null);
     const [fileUrl, setFileUrl] = useState<string | StaticImageData | null>(null);
     const [loading, setLoading] = useState<boolean>(false);
+    const { data: session } = useSession() as { data: Session | null };
 
-    const addImageToPost = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const addImageToPost = (e: React.ChangeEvent<HTMLInputElement>): void => {
         const reader = new FileReader();
         if (e.target.files![0]) {
             reader.readAsDataURL(e.target.files![0]);
@@ -28,6 +34,28 @@ const Modal: NextComponentType = () => {
     const uploadPost = async (): Promise<void> => {
         if (loading) return;
         setLoading(true);
+
+        const docRef: DocumentReference<DocumentData> = await addDoc(collection(database, 'posts'), {
+            username: session?.user?.name,
+            caption: captionRef.current?.value,
+            profileImg: session?.user?.image,
+            timestamp: serverTimestamp()
+        });
+
+        console.log("New Doc added with Id: ", docRef.id);
+
+        const imageRef = ref(storage, `posts/${docRef.id}/image`);
+
+        await uploadString(imageRef, selectedFile!.toString(), 'data_url').then(async (snapshot) => {
+            const downloadUrl = await getDownloadURL(imageRef);
+            await updateDoc(doc(database, 'posts', docRef.id), {
+                image: downloadUrl
+            })
+        });
+
+        setOpen(false);
+        setLoading(false);
+        setSelectedFile(null);
     }
 
     return (
@@ -94,15 +122,17 @@ const Modal: NextComponentType = () => {
                                             <input
                                                 className='border-none focus:ring-0 w-full text-center'
                                                 type='text'
+                                                ref={captionRef}
                                                 placeholder='Please enter a caption ...'
                                             />
                                         </div>
                                     </div>
 
                                     <div className='mt-5 sm:mt-6'>
-                                        <button className='inline-flex justify-center w-full rounded-md border border-transparent shadow-sm
-                                        px-4 py-2 bg-red-600 text-base font-medium text-white hover:bg-red-700 focus:outline-none
-                                        focus:ring-2 focus:ring-offset-2 focus:ring-red-500 sm:text-sm disabled:bg-gray-300 disabled:cursor-not-allowed hover:disabled:bg-gray-300'>
+                                        <button
+                                            onClick={uploadPost}
+                                            className='inline-flex justify-center w-full rounded-md border border-transparent shadow-sm px-4 py-2 bg-red-600 text-base font-medium text-white hover:bg-red-700 focus:outline-none
+                                            focus:ring-2 focus:ring-offset-2 focus:ring-red-500 sm:text-sm disabled:bg-gray-300 disabled:cursor-not-allowed hover:disabled:bg-gray-300'>
                                             Upload Post
                                         </button>
                                     </div>

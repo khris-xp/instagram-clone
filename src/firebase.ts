@@ -25,6 +25,6 @@ const firebaseConfig: TFirebaseConfig = {
 
 const app: FirebaseApp = !getApps().length ? initializeApp(firebaseConfig) : getApp();
 const database: Firestore = getFirestore();
-const analytics: Analytics = getAnalytics(app);
+const storage = getStorage();
 
-export { app, database, analytics }
+export { app, database, storage }
