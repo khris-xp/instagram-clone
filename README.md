@@ -1,4 +1,61 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+
+# Instagram Clone
+
+This project is an Instagram clone that includes features such as stories, suggestions, posts, and likes. It uses Google Authentication with NextAuth and Firebase as the database. Recoil is used to manage the state. This project is built using Next.js with TypeScript, TailwindCSS, Firebase, Recoil, and NextAuth.
+## Features
+
+- Stories
+- Suggestions
+- Posts
+- Likes
+- Google Authentication with NextAuth
+## Tech Stack
+
+**Client:** Next.js with TypeScript, TailwindCSS, Firebase, Recoil, and NextAuth
+
+**Server:** Firebase
+## Getting Started
+
+First, run the development server:
+
+```bash
+npm run dev
+# or
+yarn dev
+# or
+pnpm dev
+```
+
+
+## Environment Variables
+
+To run this project, you will need to add the following environment variables to your .env.local file
+
+`GOOGLE_CLIENT_ID`
+`GOOGLE_CLIENT_SECRET`
+`NEXT_AUTH_URL`
+`NEXTAUTH_SECRET`
+
+## Deployment
+
+To deploy this project run
+
+```bash
+  pnpm run build
+  pnpm run start
+```
+
+
+## Demo
+
+Demo Links : https://instagram-clone-khris-xp.vercel.app/
+## Authors
+
+- [@khris-xp](https://github.com/khris-xp)
+
+
+
+<!-- This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
 ## Getting Started
 
@@ -35,4 +92,4 @@ You can check out [the Next.js GitHub repository](https://github.com/vercel/next
 
 The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details. -->
