@@ -1,11 +1,11 @@
 import { Fragment } from 'react';
 import Image from 'next/image';
-import { PlusCircleIcon, UserGroupIcon, HeartIcon, PaperAirplaneIcon, MagnifyingGlassIcon, Bars3Icon } from '@heroicons/react/24/outline';
-import { HomeIcon } from '@heroicons/react/20/solid';
 import { NextComponentType } from 'next';
 import { signIn, signOut, useSession } from 'next-auth/react';
 import { useRouter, NextRouter } from 'next/router';
 import { Session } from 'next-auth';
+import { PlusCircleIcon, UserGroupIcon, HeartIcon, PaperAirplaneIcon, MagnifyingGlassIcon, Bars3Icon } from '@heroicons/react/24/outline';
+import { HomeIcon } from '@heroicons/react/20/solid';
 import { useRecoilState } from 'recoil';
 import modalAtom from '../../atoms/modalAtom';
 
@@ -47,7 +47,7 @@ const Header: NextComponentType = () => {
                                 <PlusCircleIcon onClick={() => setOpen(true)} className='navBtn' />
                                 <UserGroupIcon className='navBtn' />
                                 <HeartIcon className='navBtn' />
-                                <Image src={session?.user?.image!} alt='profi-picture'
+                                <Image src='https://cdn-icons-png.flaticon.com/512/3607/3607444.png' alt='profile-picture'
                                     className='h-10 w-10 rounded-full cursor-pointer' width={1000} height={1000} onClick={() => signOut()} />
                             </Fragment>
                         ) : (

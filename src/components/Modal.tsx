@@ -5,7 +5,7 @@ import { useRecoilState } from 'recoil';
 import modalAtom from '../../atoms/modalAtom';
 import { Dialog, Transition } from '@headlessui/react';
 import { CameraIcon } from '@heroicons/react/20/solid';
-import { database, storage } from '../../src/firebase';
+import { database, storage } from '@/firebase';
 import { DocumentData, DocumentReference, addDoc, collection, doc, serverTimestamp, updateDoc } from 'firebase/firestore';
 import { useSession } from 'next-auth/react';
 import { Session } from 'next-auth';

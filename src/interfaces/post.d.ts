@@ -1,5 +1,5 @@
 export type TPost = {
-    id?: string;
+    id?: any;
     username: string;
     userImage: string;
     postImage: string;

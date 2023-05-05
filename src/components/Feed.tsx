@@ -1,8 +1,8 @@
 import { Fragment } from 'react';
 import { NextComponentType } from 'next';
-import { Stories, Posts, MiniProfile, Suggestions } from '@/components';
 import { useSession } from 'next-auth/react';
 import { Session } from 'next-auth';
+import { Stories, Posts, MiniProfile, Suggestions } from '@/components';
 
 const Feed: NextComponentType = () => {
     const { data: session } = useSession() as { data: Session | null };

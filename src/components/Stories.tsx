@@ -24,7 +24,7 @@ const Stories: NextComponentType = () => {
     return (
         <Fragment>
             <div className='flex space-x-2 p-6 bg-white mt-8 border-gray-200 border rounded-sm scrollbar-container' style={{ overflowX: 'scroll' }}>
-                {session && (<Story img={session.user?.image!} username={session.user?.name!} />)}
+                {session && (<Story img='https://cdn-icons-png.flaticon.com/512/3607/3607444.png' username={session.user?.name!} />)}
                 {suggestions.map((profile: IStories) => (
                     <Story key={profile.userId} img={profile.avatar} username={profile.username} />
                 ))}

@@ -1,6 +1,16 @@
-import NextAuth, { Awaitable, DefaultSession, NextAuthOptions } from "next-auth";
+import NextAuth, { DefaultSession, NextAuthOptions, Session } from "next-auth";
 import GoogleProvider from "next-auth/providers/google";
-import { Session } from "next-auth";
+import { JWT, getToken } from "next-auth/jwt"
+import { AdapterUser } from "next-auth/adapters";
+
+interface AuthSession extends Session {
+    user: {
+        uuid: string | undefined,
+        name: string,
+        email: string,
+        image: string,
+    };
+}
 
 const authOptions: NextAuthOptions = {
     providers: [
@@ -13,10 +23,12 @@ const authOptions: NextAuthOptions = {
         signIn: "/auth/signin",
     },
     callbacks: {
-        async session({ session, token, user }: any): Promise<Session | DefaultSession> {
+        async session({ session, token, user }: { session: AuthSession, token: JWT, user: AdapterUser } | any) {
             session.user = session.user ?? {};
-            session.user.username = session?.user?.name?.split(" ").join("").toLowerCase()!;
-            session.user.uuid = token?.sub!;
+            session.user.uuid = token.sub;
+            session.user.name = session?.user?.name?.split(" ").join("").toLowerCase()!;
+            session.user.email = session?.user?.email?.split(" ").join("").toLowerCase()!;
+            session.user.image = session?.user?.image?.split(" ").join("").toLowerCase()!;
             return session;
         },
     },
